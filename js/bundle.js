@@ -48,7 +48,7 @@ var ChatroomContainer = React.createClass({displayName: "ChatroomContainer",
     return (
       React.createElement("div", {className: "wrapper"}, 
         React.createElement("div", {className: "fluid-container"}, 
-          React.createElement("header", {className: "header-chat"}, React.createElement("h1", {className: "chatter-head"}, "Chat App"), React.createElement("i", {className: "fa fa-comments fa-5x", "aria-hidden": "true"}))
+          React.createElement("header", {className: "header-chat"}, React.createElement("h1", {className: "chatter-head"}, "ChatApp"), React.createElement("i", {className: "fa fa-comments fa-5x", "aria-hidden": "true"}), React.createElement("h2", {className: "byJohn"}, "JB3 Industries"))
         ), 
       React.createElement("div", {className: "container"}, 
 
@@ -63,7 +63,7 @@ var ChatroomContainer = React.createClass({displayName: "ChatroomContainer",
 
               React.createElement("div", {className: "row"}, 
                 React.createElement("div", {className: "user-input"}, 
-                  React.createElement(ChatSubmitMessageForm, {username: this.props.username, addChatMessage: this.addChatMessage})
+                  React.createElement(ChatSubmitMessageForm, {router: this.props.router, username: this.props.username, addChatMessage: this.addChatMessage})
                 )
               )
             )
@@ -92,8 +92,9 @@ var ChatSubmitMessageForm = React.createClass({displayName: "ChatSubmitMessageFo
   },
   handleLogOut: function(event) {
     event.preventDefault();
-    console.log('clicker');
-    console.log('tsu',this.localStorage.username);
+    localStorage.removeItem('username');
+    this.props.router.navigate('login', {trigger: true});
+
   },
 
   render: function(){
