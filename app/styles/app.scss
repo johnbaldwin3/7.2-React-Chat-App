@@ -15,18 +15,56 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 img {
   max-width: 100%;
 }
-#app {
+body {
   background-color: #c9d9de;
 }
 .chatroom-messages {
-  height: 400px;
-  overflow: hidden;
+  height: 240px;
+  overflow: scroll;
   background-color: white;
   border: 1px solid #777;
+  box-shadow: inset 0px 0px 7px 2px #d0d5d5;
+  padding: 10px 0;
+}
+.chatter-head{
+  display: inline-block;
+
 }
 .header-chat {
   padding: 15px;
   background-color: #5c99cd;
   color: white;
-  border-bottom: 1px solid black;
+  box-shadow: 0px 0px 10px 0px #05123d;
+  //border-bottom: 1px solid black;
+
+}
+.chatroom-title {
+  color: #373785;
+  text-shadow: 0px 5px 6px rgb(167, 167, 172);
+}
+
+.messages {
+  list-style: none;
+}
+
+.time {
+  color: blue;
+  font-weight: 500;
+}
+
+.userid {
+  color: red;
+  font-weight: 500;
+}
+
+.chat-ul {
+  padding-left: 10px;
+}
+#sub-button-two {
+  float: right;
+}
+
+#message-labeller {
+  color: #373785;
+  text-shadow: 0px 2px 5px rgb(167, 167, 172);
 }

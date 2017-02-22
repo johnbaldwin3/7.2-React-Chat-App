@@ -1,10 +1,27 @@
 var React = require('react');
 var models = require('../models/chat_model.js');
 
+var chatMessageCollection = new models.ChatMessageCollection();
+
 var ChatroomContainer = React.createClass({
+  componentWillMount: function () {
+    window.setInterval(this.getChatMessages, 3000);
+    //console.log('run run run');
+  },
+  getChatMessages: function() {
+    var self = this;
+
+  chatMessageCollection.fetch().done(function(){
+      self.setState({chatMessageCollection: chatMessageCollection});
+
+      self.forceUpdate();
+      //console.log('ran fetch getchatmsg');
+    });
+
+  },
   getInitialState: function(){
 
-    var chatMessageCollection = new models.ChatMessageCollection();
+    chatMessageCollection = new models.ChatMessageCollection();
     var self = this;
 
     chatMessageCollection.fetch().done(function(){
@@ -12,10 +29,14 @@ var ChatroomContainer = React.createClass({
 
       self.forceUpdate();
     });
-    return {chatList: chatMessageCollection};
+    return {
+      chatList: chatMessageCollection,
+      username: this.props.router.username
+    };
   },
   addChatMessage: function(chatMsg){
     var chatList = this.state.chatList;
+    chatMsg.username = this.state.username;
     chatList.create(chatMsg);
     this.setState({chatList: chatList});
   },
@@ -25,39 +46,27 @@ var ChatroomContainer = React.createClass({
     return (
       <div className="wrapper">
         <div className="fluid-container">
-          <header className="header-chat"><h1>Chat App</h1></header>
+          <header className="header-chat"><h1 className="chatter-head">Chat App</h1><i className="fa fa-comments fa-5x" aria-hidden="true"></i></header>
         </div>
       <div className="container">
 
           <div className="row">
-          <div className="col-md-8">
+          <div className="col-sm-8 col-sm-offset-2">
 
             <div className="chatroom">
               <h3 className="chatroom-title">TIY GVL Chat Room</h3>
               <div className="chatroom-messages">
-                <ChatMessageList chatMessages={this.state.chatList}/>
+                <ChatMessageList username={this.props.username} chatMessages={this.state.chatList}/>
               </div>
 
               <div className="row">
                 <div className="user-input">
-                  <ChatSubmitMessageForm addChatMessage = {this.addChatMessage}/>
+                  <ChatSubmitMessageForm username={this.props.username} addChatMessage = {this.addChatMessage}/>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="user-input">
-              <form action="">
-                <div className="form-group">
-                  <label id="username-labeller" htmlFor="username">Username: </label>
-                  <input type="text" className="form-control input-bar" id="username" placeholder="Username..." />
-                  <label id="password-labeller" htmlFor="password">Password: </label>
-                  <input type="password" className="form-control input-bar" id="password" placeholder="Password..." />
-                </div>
-                <input id="create-button" type="submit" className="btn btn-success" value="Create User"/>
-              </form>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -79,16 +88,22 @@ var ChatSubmitMessageForm = React.createClass({
     this.props.addChatMessage(this.state);
     this.setState({message: ''});
   },
+  handleLogOut: function(event) {
+    event.preventDefault();
+    console.log('clicker');
+    console.log('tsu',this.localStorage.username);
+  },
 
   render: function(){
     console.log(this.state.message);
     return (
       <form onSubmit={this.addChatMessage}>
         <div className="form-group">
-          <label id="message-labeller" htmlFor="message">Add to the Convo... </label>
+          <label id="message-labeller" htmlFor="message">Add to the Convo...</label>
           <input onChange={this.handleMessageChange} value={this.state.message} type="text" className="form-control input-bar" id="message" placeholder="Your Message..." />
         </div>
         <input id="sub-button" type="submit" className="btn btn-success" value="Send Msg"/>
+        <input onClick={this.handleLogOut}id="sub-button-two" type="submit" className="btn btn-danger" value="Log Out"/>
       </form>
     )
   }
@@ -99,7 +114,7 @@ var ChatMessageList = React.createClass({
   render: function() {
       var messages = this.props.chatMessages.map(function(msgs){
           return (
-            <li key={msgs.cid} className="messages">{msgs.get('username')}:{msgs.get('message')}</li>
+            <li key={msgs.cid} className="messages"><span className="time">{msgs.get('timestamp')}::</span><span className="userid"> {msgs.get('username')} </span>  : {msgs.get('message')} </li>
           );
 
       })
@@ -111,6 +126,11 @@ var ChatMessageList = React.createClass({
   }
 });
 
+var AddUserForm = React.createClass({
+  render: function(){
+    return (<div></div>);
+  }
+});
 module.exports = {
   ChatroomContainer
 };
