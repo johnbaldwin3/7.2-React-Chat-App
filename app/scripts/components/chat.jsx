@@ -46,7 +46,7 @@ var ChatroomContainer = React.createClass({
     return (
       <div className="wrapper">
         <div className="fluid-container">
-          <header className="header-chat"><h1 className="chatter-head">Chat App</h1><i className="fa fa-comments fa-5x" aria-hidden="true"></i></header>
+          <header className="header-chat"><h1 className="chatter-head">ChatApp</h1><i className="fa fa-comments fa-5x" aria-hidden="true"></i><h2 className="byJohn">JB3 Industries</h2></header>
         </div>
       <div className="container">
 
@@ -61,7 +61,7 @@ var ChatroomContainer = React.createClass({
 
               <div className="row">
                 <div className="user-input">
-                  <ChatSubmitMessageForm username={this.props.username} addChatMessage = {this.addChatMessage}/>
+                  <ChatSubmitMessageForm router={this.props.router} username={this.props.username} addChatMessage = {this.addChatMessage}/>
                 </div>
               </div>
             </div>
@@ -90,8 +90,9 @@ var ChatSubmitMessageForm = React.createClass({
   },
   handleLogOut: function(event) {
     event.preventDefault();
-    console.log('clicker');
-    console.log('tsu',this.localStorage.username);
+    localStorage.removeItem('username');
+    this.props.router.navigate('login', {trigger: true});
+
   },
 
   render: function(){
