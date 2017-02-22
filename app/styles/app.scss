@@ -1,0 +1,32 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+#app {
+  background-color: #c9d9de;
+}
+.chatroom-messages {
+  height: 400px;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #777;
+}
+.header-chat {
+  padding: 15px;
+  background-color: #5c99cd;
+  color: white;
+  border-bottom: 1px solid black;
+}
