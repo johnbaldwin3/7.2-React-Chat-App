@@ -5778,7 +5778,19 @@ body {
   padding: 10px 0;
   border-radius: 5px; }
 
+.chatter-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+
 .byJohn {
+  font-family: 'Zeyada', cursive;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5793,6 +5805,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 15px;
   background-color: #5c99cd;
   color: white;

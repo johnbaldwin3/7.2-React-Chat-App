@@ -48,7 +48,7 @@ var ChatroomContainer = React.createClass({displayName: "ChatroomContainer",
     return (
       React.createElement("div", {className: "wrapper"}, 
         React.createElement("div", {className: "fluid-container"}, 
-          React.createElement("header", {className: "header-chat"}, React.createElement("h1", {className: "chatter-head"}, "ChatApp"), React.createElement("i", {className: "fa fa-comments fa-5x", "aria-hidden": "true"}), React.createElement("h2", {className: "byJohn"}, "JB3 Industries"))
+          React.createElement("header", {className: "header-chat"}, React.createElement("h1", {className: "chatter-head"}, "ChatApp   ", React.createElement("i", {className: "fa fa-comments fa-2x", "aria-hidden": "true"})), React.createElement("h2", {className: "byJohn"}, " JB3 Industries"))
         ), 
       React.createElement("div", {className: "container"}, 
 
