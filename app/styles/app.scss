@@ -28,11 +28,14 @@ body {
   border-radius: 5px;
 }
 .chatter-head{
-//  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
 }
 
 .byJohn{
+  font-family: 'Zeyada', cursive;
   display: flex;
   align-items: flex-end;
 
@@ -40,6 +43,7 @@ body {
 .header-chat {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 15px;
   background-color: #5c99cd;
   color: white;

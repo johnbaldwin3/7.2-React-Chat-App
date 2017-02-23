@@ -46,7 +46,7 @@ var ChatroomContainer = React.createClass({
     return (
       <div className="wrapper">
         <div className="fluid-container">
-          <header className="header-chat"><h1 className="chatter-head">ChatApp</h1><i className="fa fa-comments fa-5x" aria-hidden="true"></i><h2 className="byJohn">JB3 Industries</h2></header>
+          <header className="header-chat"><h1 className="chatter-head">ChatApp&nbsp;  <i className="fa fa-comments fa-2x" aria-hidden="true"></i></h1><h2 className="byJohn"> JB3 Industries</h2></header>
         </div>
       <div className="container">
 
