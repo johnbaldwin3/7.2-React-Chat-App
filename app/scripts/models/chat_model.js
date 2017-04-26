@@ -12,9 +12,9 @@ var Backbone = require('backbone');
 var ChatMessage = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
-      username: localStorage.getItem('username'),
-      message: ''
-      // timestamp: ''
+    username: localStorage.getItem('username'),
+    message: ''
+    // timestamp: ''
 
   },
   initialize: function(){
